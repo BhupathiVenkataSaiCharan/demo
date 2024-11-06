@@ -1,0 +1,6 @@
+<template>
+    <lightning-card title="Send Email to User selected from record picker">
+        <lightning-record-picker label="Search Users" object-api-name="User" onchange={handleChange} placeholder="Search Users"></lightning-record-picker>
+        <lightning-button label="Send Email" variant="brand" onclick={sendEmail}></lightning-button>
+    </lightning-card>
+</template>

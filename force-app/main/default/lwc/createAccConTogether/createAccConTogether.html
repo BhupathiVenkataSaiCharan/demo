@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Create Account and related Contact from single form">
+        <lightning-input label="Account Name" value={accountName} data-id="accountName" onchange={handleInput}></lightning-input>
+        <lightning-input label="Contact Last Name" value={contactLastName} data-id="contactLastName" onchange={handleInput}></lightning-input>
+        <lightning-input label="Contact Email" value={contactEmail} data-id="contactEmail" onchange={handleInput}></lightning-input>
+
+        <lightning-input label="Upload File" type="file" onchange={handleFile}></lightning-input>
+
+        <lightning-button label="Submit" variant="brand" onclick={handleSave}></lightning-button>
+    </lightning-card>
+</template>

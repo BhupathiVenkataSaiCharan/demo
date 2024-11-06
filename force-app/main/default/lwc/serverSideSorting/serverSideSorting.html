@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Server Side Sorting">
+        <lightning-datatable 
+                key-field="Id"
+                data={data}
+                columns={columns}
+                sorted-by={sortedBy}
+                sorted-direction={sortedDirection}
+                onsort={handleSort}
+                onrowaction={handleRowAction}
+        ></lightning-datatable>
+        <lightning-button label="Previous" variant="brand" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+        <lightning-button label="Next" variant="brand" onclick={handleNext} disabled={disableNext}></lightning-button>
+    </lightning-card>
+</template>
