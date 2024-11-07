@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Case List with Filters">
+        <lightning-card title="Filters">
+            <lightning-combobox label="Case Status" options={statusOptions} value={statusValue} onchange={handleStatus}></lightning-combobox>
+            <lightning-combobox label="Created Date" options={dateOptions} value={dateValue} onchange={handleDate}></lightning-combobox>
+            <lightning-combobox label="Contacts" options={contactOptions} value={contactsValue} onchange={handleContacts}></lightning-combobox>
+        </lightning-card>
+        <lightning-datatable key-field="Id" data={cases} columns={columns}></lightning-datatable>
+    </lightning-card>
+</template>
