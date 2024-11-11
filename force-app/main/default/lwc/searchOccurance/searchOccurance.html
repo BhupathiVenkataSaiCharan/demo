@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Search word occurance">
+        <lightning-input type="search" name="search" value={searchTerm} onchange={handleInputChange}></lightning-input>
+        <template if:true={filteredAccounts}>
+            <template for:each={filteredAccounts} for:item="acc">
+                <p key={acc.Id}>{acc.Name}</p>
+            </template>
+        </template>
+    </lightning-card>
+</template>
