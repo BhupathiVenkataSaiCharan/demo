@@ -26,6 +26,7 @@ public class datatableWithFiltersController {
                 caseQuery += ' AND ContactId = :contact';
             }
 
+            System.debug('Case Query ===> ' +caseQuery);
             List<Case> caseList = Database.query(caseQuery);
             obj.cases.addAll(caseList);
 

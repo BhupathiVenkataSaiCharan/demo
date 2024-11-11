@@ -51,13 +51,14 @@ export default class DatatableWithFilters extends LightningElement {
 
     handleDate(event){
         this.dateValue = event.target.value;
+        console.log('Date ===> ', this.dateValue);
     }
     
     handleContacts(event){
         this.contactsValue = event.target.value;
     }
 
-    @wire(getCaseList,{accId : '$recordId', status : '$statusValue', date : '$dateValue', contact : '$contactsValue'})
+    @wire(getCaseList,{accId : '$recordId', status : '$statusValue', createddate : '$dateValue', contact : '$contactsValue'})
     wiredData({data,error}){
         if(data){
             this.contacts = data.contacts;
