@@ -1,4 +1,4 @@
-trigger OpportunityLineItemTrigger on OpportunityLineItem (after insert,after update, after delete, after undelete) {
+trigger OpportunityLineItemTrigger on OpportunityLineItem (after insert,after update, after delete) {
 
     switch on trigger.OperationType {
         when AFTER_INSERT {
@@ -10,8 +10,5 @@ trigger OpportunityLineItemTrigger on OpportunityLineItem (after insert,after up
         when AFTER_DELETE {
             OpportunityLineItemTriggerHandler.ProductInformation(trigger.old);
         }
-        // when AFTER_UNDELETE {
-        //     OpportunityLineItemTriggerHandler.ProductInformation(trigger.new);
-        // }
     }
 }

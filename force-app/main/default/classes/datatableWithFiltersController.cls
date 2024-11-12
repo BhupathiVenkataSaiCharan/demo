@@ -39,7 +39,7 @@ public class datatableWithFiltersController {
     }
 
     public class objectWrapper{
-        @AuraEnabled public List<Contact> contacts = new List<Contact>();
-        @AuraEnabled public List<Case> cases = new List<Case>();
+        public List<Contact> contacts = new List<Contact>();
+        public List<Case> cases = new List<Case>();
     }
 }

@@ -12,7 +12,7 @@ public class OpportunityLineItemTriggerHandler {
 
         for(Opportunity opp : [SELECT Id,(SELECT Id,Product2.Name FROM OpportunityLineItems) FROM Opportunity WHERE Id IN :oppIds]){
             
-            List<String> productNames = new List<String>();
+            Set<String> productNames = new Set<String>();
 
             for(OpportunityLineItem oliname : opp.OpportunityLineItems){
                 productNames.add(oliname.Product2.Name);

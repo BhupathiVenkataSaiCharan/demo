@@ -61,11 +61,11 @@ export default class DatatableWithFilters extends LightningElement {
     @wire(getCaseList,{accId : '$recordId', status : '$statusValue', createddate : '$dateValue', contact : '$contactsValue'})
     wiredData({data,error}){
         if(data){
-            this.contacts = data.contacts;
-            this.cases = data.cases.map(caselist=>({
+            this.contacts = data.contacts || [];
+            this.cases = data.cases?.map(caselist=>({
                 ...caselist,
                 caseUrl : `${caselist.Id}`
-            }));
+            })) || [];
         }else{
             console.log('Error', JSON.stringify(error));
         }
