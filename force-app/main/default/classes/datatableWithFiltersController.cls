@@ -5,6 +5,8 @@ public class datatableWithFiltersController {
 
         objectWrapper obj = new objectWrapper();
 
+        System.debug('AccountId ===> ' +accId + 'Status ===>' +status + 'CreatedDate ===> ' +createddate + 'Contact ===> ' +contact);
+
         try {
             List<Contact> conList = [SELECT Id, Name, AccountId FROM Contact WHERE AccountId = :accId];
             obj.contacts.addAll(conList);
@@ -30,12 +32,15 @@ public class datatableWithFiltersController {
             List<Case> caseList = Database.query(caseQuery);
             obj.cases.addAll(caseList);
 
-            return obj;
+            System.debug('Contacts===>' +obj.contacts);
+            System.debug('Cases===>' +obj.cases);
 
 
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
+        System.debug('obj: '+obj);
+        return obj;
     }
 
     public class objectWrapper{

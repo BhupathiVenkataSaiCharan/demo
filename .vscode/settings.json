@@ -4,5 +4,8 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
-  "salesforce.einsteinForDevelopers.enableAutocompletions": false
+  "salesforce.einsteinForDevelopers.enableAutocompletions": false,
+  "workbench.editor.defaultBinaryEditor": "default",
+  "workbench.editor.pinnedTabSizing": "normal",
+  "workbench.editor.tabSizing": "fit"
 }

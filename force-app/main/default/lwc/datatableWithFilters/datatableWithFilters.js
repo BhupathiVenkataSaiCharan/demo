@@ -1,6 +1,7 @@
 import { api, LightningElement, wire } from 'lwc';
 import getCaseList from '@salesforce/apex/datatableWithFiltersController.getCaseList';
 
+
 export default class DatatableWithFilters extends LightningElement {
 
     @api recordId;
@@ -60,7 +61,10 @@ export default class DatatableWithFilters extends LightningElement {
 
     @wire(getCaseList,{accId : '$recordId', status : '$statusValue', createddate : '$dateValue', contact : '$contactsValue'})
     wiredData({data,error}){
+        console.log('CCC==>', JSON.stringify(data));
         if(data){
+            console.log('Contacts===>', JSON.stringify(data.contacts))
+            console.log('Cases===>', JSON.stringify(data.cases))
             this.contacts = data.contacts || [];
             this.cases = data.cases?.map(caselist=>({
                 ...caselist,
