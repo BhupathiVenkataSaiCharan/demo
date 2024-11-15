@@ -61,6 +61,7 @@ export default class DatatableWithFilters extends LightningElement {
 
     @wire(getCaseList,{accId : '$recordId', status : '$statusValue', createddate : '$dateValue', contact : '$contactsValue'})
     wiredData({data,error}){
+        console.log('RecordId==>', this.recordId);
         console.log('CCC==>', JSON.stringify(data));
         if(data){
             console.log('Contacts===>', JSON.stringify(data.contacts))

@@ -20,8 +20,8 @@ public class ContactTriggerHandler {
             }
             List<Country_Codes__mdt> mdtList = [SELECT MasterLabel,Code__c FROM Country_Codes__mdt WHERE MasterLabel = :con.Country__c];
             if(mdtList.isEmpty()){
-                con.MobilePhone = phoneNumberWithoutCode;
-                break;
+                // con.MobilePhone = phoneNumberWithoutCode;
+                // break;
             }
             String countryPhoneNumber = mdtList[0].Code__c + ' ' + phoneNumberWithoutCode;
             con.MobilePhone = countryPhoneNumber;
