@@ -69,10 +69,11 @@ export default class DatatableWithFilters extends LightningElement {
             this.contacts = data.contacts || [];
             this.cases = data.cases?.map(caselist=>({
                 ...caselist,
-                caseUrl : `${caselist.Id}`
+                caseUrl : `/${caselist.Id}`
             })) || [];
         }else{
             console.log('Error', JSON.stringify(error));
         }
     }
+
 }

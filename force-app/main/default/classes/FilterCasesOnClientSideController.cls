@@ -1,25 +1,43 @@
+/**
+ * CH-01            Charan              18-11-2024              practice Scenarios
+ * CH-02            Charan              18-11-2024              interview Scenarios
+ * CH-03            Charan              18-11-2024              task by Surya prajwal
+ */
+
+
 public class FilterCasesOnClientSideController {
-    
-    @AuraEnabled(cacheable=true)
-    public static objectsWrapper getCaseRecords(String accId){
+
+
+    /**
+    * CH-03 Send List of Contacts and its related Cases with account Id to Client Side and render data there
+    * @param newList
+    * @return contacts and cases list with wrapper class
+    */
+    @AuraEnabled(cacheable = true)
+    public static objectWrapper getCaseRecords(String accId){
         
-        objectsWrapper wrapper = new objectsWrapper();
+        objectWrapper obj = new objectWrapper();
+        
         try {
+            Map<Id,Contact> conMap = new Map<Id,Contact>([SELECT Id,Name,AccountId FROM Contact WHERE AccountId = :accId]);
+            obj.contacts.addAll(conMap.values());
 
-            List<Contact> conList = [SELECT Id,AccountId FROM Contact WHERE AccountId = :accId];
-            wrapper.contacts.addAll(conList);
+            obj.cases.addAll([SELECT Id, CaseNumber, Status, CreatedDate, LastModifiedDate, ContactId FROM Case WHERE ContactId IN :conMap.keySet() AND Id != NULL]);
 
-            List<Case> caseList = [SELECT CaseNumber,Status,CreatedDate,LastModifiedDate,ContactId FROM Case WHERE ContactId IN :conList];
-            wrapper.cases.addAll(caseList);
+            return obj;
 
-            return wrapper;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
 
-    public class objectsWrapper{
-        public List<Contact> contacts = new List<Contact>();
-        public List<Case> cases = new List<Case>();
+    /**
+     * CH-03 wrapper class to hold list of contacts and cases
+     * @param
+     * @return 
+     */
+    public class objectWrapper{
+        @AuraEnabled public List<Contact> contacts = new List<Contact>();
+        @AuraEnabled public List<Case> cases = new List<Case>();
     }
 }

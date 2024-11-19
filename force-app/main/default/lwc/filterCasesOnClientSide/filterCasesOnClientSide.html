@@ -1,5 +1,10 @@
 <template>
     <lightning-card title="Case List with Filters (Client-Side)">
-        <lightning-datatable key-field="Id" data={cases} columns={columns}></lightning-datatable>
+        <lightning-card title="Filters">
+            <lightning-combobox label="Case Status" value={statusValue} onchange={handleStatus} options={statusOptions}></lightning-combobox>
+            <lightning-combobox label="Created Date" value={dateValue} onchange={handleDate} options={dateOptions}></lightning-combobox>
+            <lightning-combobox label="Contacts" value={contactValue} onchange={handleContact} options={contactOptions}></lightning-combobox>
+        </lightning-card>
+        <lightning-datatable key-field="Id" data={filteredCases} columns={columns}></lightning-datatable>
     </lightning-card>
 </template>
