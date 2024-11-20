@@ -1,0 +1,14 @@
+<template>
+    <template if:true={metadata}>
+        <template for:each={metadata} for:item="mdt">
+            <lightning-input type="checkbox" 
+                                key={mdt.Id} 
+                                label={mdt.Label}
+                                onchange={handleCheck}
+                                data-id={mdt.Id}
+                                data-label={mdt.Label}
+            ></lightning-input>
+        </template>
+    </template>
+    <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+</template>
