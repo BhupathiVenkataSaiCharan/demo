@@ -22,6 +22,6 @@ public class LeadCountOnMapController {
 
     public class leadWrapper{
         @AuraEnabled public String city { get; set; }
-        @AuraEnabled public Integer count { get; set;}
+        @AuraEnabled public Integer count { get; set;}  
     }
 }

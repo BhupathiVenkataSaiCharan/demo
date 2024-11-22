@@ -11,10 +11,10 @@ export default class LeadCountOnMap extends LightningElement {
             this.data = data || [
                 {
                     location : {
-                        City : 'Hyderabad',
+                        City : 'Bangalore',
                         Country : 'India'
                     },
-                    title : 'Hyderabad',
+                    title : 'Bangalore',
                     description: '2'
                 }
             ];
@@ -30,6 +30,5 @@ export default class LeadCountOnMap extends LightningElement {
             title: item.city,
             description: `Count : ${item.count}`
         }));
-    }
-    
+    }  
 }
