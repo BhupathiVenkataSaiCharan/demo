@@ -8,7 +8,7 @@ trigger LeadTrigger on Lead (before insert, after insert, before update, after u
             // LeadTriggerHandler.recursiveCheck1(trigger.new);
         }
         when AFTER_INSERT {
-            LeadTriggerHandler.recursionCheck(trigger.new);
+            // LeadTriggerHandler.recursionCheck(trigger.new);
         }
         when BEFORE_UPDATE{
             // LeadTriggerHandler.sourceBasedRating(trigger.new); 
@@ -16,7 +16,7 @@ trigger LeadTrigger on Lead (before insert, after insert, before update, after u
             // LeadTriggerHandler.recursiveCheck1(trigger.new);
         }
         when AFTER_UPDATE {
-            LeadTriggerHandler.recursionCheck(trigger.new);
+            // LeadTriggerHandler.recursionCheck(trigger.new);
         }
     }
 
