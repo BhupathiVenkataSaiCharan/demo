@@ -1,3 +1,8 @@
+/**
+ * AccountTrigger handler class
+ * 
+ * CH-01                Charan                 21-11-2024               practice scenarios
+ */
 public class AccountTriggerHandler {
     
     //create related contact when account is created
@@ -114,20 +119,39 @@ public class AccountTriggerHandler {
 
 
     //if account phone updated the update related contacts phone
-    public static void updatePhone(List<Account> newList){
+    // public static void updatePhone(List<Account> newList){
 
-        Map<Id, String> accMap = new Map<Id, String>();
-        for(Account acc : newList){
-            Account oldMap = (Account)Trigger.oldMap.get(acc.Id);
-            if(acc.Phone != oldMap.Phone){
-                accMap.put(acc.Id,acc.Phone);
-            }
-        }
+    //     Map<Id, String> accMap = new Map<Id, String>();
+    //     for(Account acc : newList){
+    //         Account oldMap = (Account)Trigger.oldMap.get(acc.Id);
+    //         if(acc.Phone != oldMap.Phone){
+    //             accMap.put(acc.Id,acc.Phone);
+    //         }
+    //     }
+    //     List<Contact> conList = new List<Contact>();
+    //     for(Contact con : [SELECT Id, AccountId, Phone FROM Contact WHERE AccountId IN :accMap.keySet()]){
+    //         con.Phone = accMap.get(con.AccountId);
+    //         conList.add(con);
+    //     }
+    //     if(!conList.isEmpty()){
+    //         update conList;
+    //     }
+    // }
+
+
+    /**
+     * CH-01 When Account Phone is updated, update the related contacts phone 
+     * @param newMap
+     * @return void     //void return is not needed in comments
+     */
+    public static void updateRelatedContactsPhone(Map<Id,Account> newMap){
+
         List<Contact> conList = new List<Contact>();
-        for(Contact con : [SELECT Id, AccountId, Phone FROM Contact WHERE AccountId IN :accMap.keySet()]){
-            con.Phone = accMap.get(con.AccountId);
+        for(Contact con : [SELECT Id,Phone,AccountId FROM Contact WHERE AccountId IN :newMap.keySet()]){
+            con.Phone = newMap.get(con.AccountId).Phone;
             conList.add(con);
         }
+
         if(!conList.isEmpty()){
             update conList;
         }

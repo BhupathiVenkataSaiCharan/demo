@@ -11,10 +11,15 @@ trigger AccountTrigger on Account (before insert, after insert, after update) {
             // AccountTriggerHandler.createAssociatedContact(trigger.new);
             // AccountTriggerHandler.createConIfIndustryBanking(trigger.new);
             // AccountTriggerHandler.numberOfLocations(trigger.new);  
+            // AccountTriggerHandler.updateRelatedContactsPhone(trigger.newMap);
+        }
+        when BEFORE_UPDATE{
+
         }
         when AFTER_UPDATE{
             // AccountTriggerHandler.updateNumberOfLocations(trigger.new);
-            AccountTriggerHandler.updatePhone(trigger.new);
+            // AccountTriggerHandler.updatePhone(trigger.new);
+            // AccountTriggerHandler.updateRelatedContactsPhone(trigger.newMap);
         }
     }
 }

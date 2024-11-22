@@ -136,4 +136,38 @@ public class AccountTriggerHandlerTest {
         }
 
     }
+
+
+    @isTest
+    static void updateRelatedContactsPhoneTest(){
+        
+        Account acc1 = new Account(Name = 'Acc 1', Phone = '1234567890');
+        Account acc2 = new Account(Name = 'Acc 2', Phone = '0987654321');
+
+        insert new List<Account>{acc1,acc2};
+
+        Contact con1 = new Contact(LastName = 'Con 1',AccountId = acc1.Id, Phone = '1234512345');
+        Contact con2 = new Contact(LastName = 'Con 2',AccountId = acc1.Id, Phone = '5432112345');
+        Contact con3 = new Contact(LastName = 'Con 3',AccountId = acc2.Id, Phone = '0987612345');
+
+        insert new List<Contact>{con1,con2,con3};
+
+        acc1.Phone = '5555555555';
+        acc2.Phone = '6666666666';
+        Map<Id,Account> newMap = new Map<Id,Account>();
+        newMap.put(acc1.Id, acc1);
+        newMap.put(acc2.Id, acc2);
+
+        Test.startTest();
+        AccountTriggerHandler.updateRelatedContactsPhone(newMap);
+        Test.stopTest();
+
+        for(Contact con : [SELECT Id,Name,Phone,AccountId FROM Contact]){
+            if(con.AccountId == acc1.Id){
+                Assert.areEqual('5555555555',con.Phone,'Phone does not match');
+            }else if(con.AccountId == acc2.Id){
+                Assert.areEqual('6666666666',con.Phone,'Phone does not match');
+            }
+        }
+    }
 }
