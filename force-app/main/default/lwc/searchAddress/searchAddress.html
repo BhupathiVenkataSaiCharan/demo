@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Search Address using ideal-postcodes.co.uk API">
+        <lightning-input label="Search Address" 
+                            type="search" 
+                            value={searchKey} 
+                            onchange={handleSearch}
+        ></lightning-input>
+        suggestions : {suggestions}
+    </lightning-card>
+</template>
