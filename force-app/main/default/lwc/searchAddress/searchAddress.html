@@ -5,6 +5,10 @@
                             value={searchKey} 
                             onchange={handleSearch}
         ></lightning-input>
-        suggestions : {suggestions}
+        <template if:true={suggestions}>
+            <template for:each={suggestions} for:item="add">
+                <p key={add.id}>{add.address}</p>
+            </template>
+        </template>
     </lightning-card>
 </template>

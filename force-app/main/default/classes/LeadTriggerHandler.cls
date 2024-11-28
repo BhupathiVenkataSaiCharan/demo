@@ -109,4 +109,26 @@ public class LeadTriggerHandler {
     //         ld.Description = 'This is a recursive update at ' + Date.today();
     //     }
     // }
+
+
+    /**
+     * CH-01 update description if text(encrypted) is changed
+     * @param newList
+     * @return void
+     */
+    public static void checkDecryptChange(List<Lead> newList){
+        List<Task> taskList = new List<Task>();
+        for(Lead ld : newList){
+            Lead oldMap = (Lead)Trigger.oldMap.get(ld.Id);
+
+            if(ld.Decrypt_in_Flow__c != oldMap.Decrypt_in_Flow__c){
+                Task tsk = new Task(
+                    Subject = ld.Decrypt_in_Flow__c,
+                    WhoId = ld.Id
+                );
+                taskList.add(tsk);
+            }
+        }
+        insert taskList;
+    }
 }

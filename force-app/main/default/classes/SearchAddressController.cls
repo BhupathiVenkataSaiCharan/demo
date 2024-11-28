@@ -16,20 +16,28 @@
 
             try{
                 HttpResponse res = http.send(req);
+                System.debug('Response :::>>>' + res);
+                System.debug('Response :::>>>' + res.getStatusCode());
+                System.debug('Response :::>>>' + res.getBody());
     
                 if(res.getStatusCode() == 200){
                     Map<String, Object> jsonResponse = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
-                    List<Object> suggestions = (List<Object>)jsonResponse.get('suggestions');
+                    System.debug('jsonResponse ::: '+jsonResponse);
+                    Map<String, Object> result = (Map<String, Object>) jsonResponse.get('result');
+                    System.debug('result ::: '+result);
+                    List<Object> hits = (List<Object>) result.get('hits');
+                    System.debug('hits ::: '+hits);
     
                     List<Map<String, String>> formattedSuggestions = new List<Map<String, String>>();
-                    for (Object suggestion : suggestions) {
-                        Map<String, Object> suggestionMap = (Map<String, Object>) suggestion;
+                    for (Object hit : hits) {
+                        Map<String, Object> hitMap = (Map<String, Object>) hit;
+                        System.debug('hitMap: '+hitMap);
                         formattedSuggestions.add(new Map<String, String>{
-                            'id' => (String) suggestionMap.get('postcode'),
-                            'address' => (String) suggestionMap.get('address')
+                            'id' => (String) hitMap.get('id'),
+                            'address' => (String)  hitMap.get('suggestion')
                         });
                     }
-                    
+                    System.debug('formattedSuggestions: '+formattedSuggestions);
                     return formattedSuggestions;
                 }else{
                     System.debug('Error: Status Code ' + res.getStatusCode() + ', Body: ' + res.getBody());

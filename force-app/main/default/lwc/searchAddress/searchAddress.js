@@ -8,9 +8,7 @@ export default class SearchAddress extends LightningElement {
 
     handleSearch(e){
         this.searchKey = e.target.value;
-        if(this.searchKey.length>10){
             this.searchResults();
-        }
         // console.log('Search value: ', this.searchVal);
     }
 
@@ -18,7 +16,9 @@ export default class SearchAddress extends LightningElement {
         // console.log('Search results: ', val);
         fetchAddress({query : this.searchKey})
         .then(result => {
+            console.log('result:', result);
             this.suggestions = result;
+            console.log('suggestions:', this.suggestions);
         })
         .catch(error=>{
             console.error('Error: ', error);
