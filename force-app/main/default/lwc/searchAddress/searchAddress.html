@@ -1,14 +1,28 @@
 <template>
     <lightning-card title="Search Address using ideal-postcodes.co.uk API">
+        <lightning-input label="Address 1" value={address1} disabled="true"></lightning-input>
+        <lightning-input label="Address 1" value={address2} disabled="true"></lightning-input>
+        <lightning-input label="Postal Code" value={postCode} disabled="true"></lightning-input>
+        <lightning-input label="City" value={city} disabled="true"></lightning-input>
         <lightning-input label="Search Address" 
                             type="search" 
                             value={searchKey} 
                             onchange={handleSearch}
         ></lightning-input>
         <template if:true={suggestions}>
-            <template for:each={suggestions} for:item="add">
-                <p key={add.id}>{add.address}</p>
-            </template>
+            <div class="dropdown">
+                <template for:each={suggestions} for:item="add">
+                    <div 
+                        key={add.id} 
+                        class="dropdown-item" 
+                        onclick={handleSelect}
+                        data-id={add.id}
+                        data-value={add.address}
+                    >
+                        {add.address}
+                    </div>
+                </template>
+            </div>
         </template>
     </lightning-card>
 </template>
