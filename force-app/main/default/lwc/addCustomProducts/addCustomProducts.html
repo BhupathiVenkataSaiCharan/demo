@@ -1,0 +1,38 @@
+<template>
+  <lightning-card title="Add Custom Products">
+    <template if:true={isProducts}>
+        <lightning-datatable data={products} 
+                                columns={columns}
+                                key-field="Id"
+                                onrowselection={handleRowSelection}
+        ></lightning-datatable>
+        <lightning-button label="Next" variant="brand" onclick={handleNext} disabled={ifProduct}></lightning-button>
+    </template>
+
+    <template if:false={isProducts}>
+        <template if:true={selectedProducts}>
+            <table>
+                <thead>
+                    <tr>
+                        <th>All Products</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={selectedProducts} for:item="prod">
+                        <tr key={prod.Id}>
+                            <td>{prod.Name}</td>
+                            <td><lightning-input type="number" value={prodQuantity} onchange={handleQuantity}></lightning-input></td>
+                            <td><lightning-input type="number" value={prodPrice} onchange={handlePrice}></lightning-input></td>
+                            <td><lightning-input type="number" value={prodTotal} disabled="true"></lightning-input></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>      
+        </template>
+        <lightning-button label="Add Products" variant="brand" onclick={handleAddProducts}></lightning-button>
+    </template>
+  </lightning-card>  
+</template>
