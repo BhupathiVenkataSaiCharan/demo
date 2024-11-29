@@ -10,17 +10,11 @@ export default class AddCustomProducts extends LightningElement {
     columns = [
         {label : 'Product Name', fieldName : 'Name'}
     ];
-
     selectedProducts = [];
-
     isProducts = true;
-
-
     prodQuantity = 0;
     prodPrice = 0;
     prodTotal = 0;
-
-
     createProducts = [];
 
     @wire(getProducts)
@@ -67,20 +61,15 @@ export default class AddCustomProducts extends LightningElement {
             Price__c : this.prodPrice,
             Total_Amount__c : this.prodTotal
         }))
-        
-        console.log('Selected Products ===> ', JSON.stringify(this.createProducts));
-        
-        
+        console.log('Selected Products ===> ', JSON.stringify(this.createProducts));  
         createLineItems({lineItemList : JSON.stringify(this.createProducts)})
         .then(result=>{
-            console.log('lineItemList', lineItemList);
-            console.log('Line Items Created ===> ', result);
+            console.log('Result ===> ', result);
         })
         .catch(error=>{
             console.log('Error ===> ', error);
         })
     }
-    
     closeAction(){
         this.dispatchEvent(new CloseActionScreenEvent());
         console.log('Close Action==>');
@@ -89,5 +78,4 @@ export default class AddCustomProducts extends LightningElement {
             console.log('reload')
         },1000);
     }
-
 }
