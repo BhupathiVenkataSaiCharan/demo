@@ -24,8 +24,8 @@
                     <template for:each={selectedProducts} for:item="prod">
                         <tr key={prod.Id}>
                             <td>{prod.Name}</td>
-                            <td><lightning-input type="number" value={prodQuantity} onchange={handleQuantity}></lightning-input></td>
-                            <td><lightning-input type="number" value={prodPrice} onchange={handlePrice}></lightning-input></td>
+                            <td><lightning-input type="number" name="Quantity" value={prodQuantity} onchange={handleTotal}></lightning-input></td>
+                            <td><lightning-input type="number" name="Price" value={prodPrice} onchange={handleTotal}></lightning-input></td>
                             <td><lightning-input type="number" value={prodTotal} disabled="true"></lightning-input></td>
                         </tr>
                     </template>

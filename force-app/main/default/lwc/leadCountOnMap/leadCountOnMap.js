@@ -30,5 +30,6 @@ export default class LeadCountOnMap extends LightningElement {
             title: item.city,
             description: `Count : ${item.count}`
         }));
-    }  
+    }
+    
 }

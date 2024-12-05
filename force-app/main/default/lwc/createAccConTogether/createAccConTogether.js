@@ -8,23 +8,16 @@ export default class CreateAccConTogether extends LightningElement {
     contactLastName = '';
     contactEmail = '';
 
-    file;
-
-    handleFile(event){
-        this.file = event.target.files[0];
-    }
-
     handleInput(event){
         this[event.target.dataset.id] = event.target.value;
     }
-
 
     handleSave(){
         console.log('Account Name ===> ', this.accountName);
         console.log('Contact Last Name ===> ', this.contactLastName);
         console.log('Contact Email ===> ', this.contactEmail);
         
-        createAccCon({accName : this.accountName, conName : this.contactLastName, conEmail : this.contactEmail, file : this.file})
+        createAccCon({accName : this.accountName, conName : this.contactLastName, conEmail : this.contactEmail})
         .then(result=>{
             this.clearInputs();
         })
@@ -37,6 +30,5 @@ export default class CreateAccConTogether extends LightningElement {
         this.accountName = '';
         this.contactLastName = '';
         this.contactEmail = '';
-        this.file = null;
     }
 }

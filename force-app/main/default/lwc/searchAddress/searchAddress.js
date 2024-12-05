@@ -41,6 +41,9 @@ export default class SearchAddress extends LightningElement {
         this.address1 = splitAddress[0];
         this.address2 = splitAddress[1];
 
+        console.log('split address length', splitAddress.length - 1);
+        console.log('split address length', splitAddress[splitAddress.length - 1]);
+
         const postndcity = splitAddress[splitAddress.length - 1].split(' ');
         
         this.postCode = postndcity[1];

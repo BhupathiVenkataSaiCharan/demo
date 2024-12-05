@@ -1,4 +1,4 @@
-    public class SearchAddressController {
+public class SearchAddressController {
         
         @AuraEnabled(cacheable=true)
         public static List<Map<String,String>> fetchAddress(String query){
@@ -27,6 +27,10 @@
                     System.debug('result ::: '+result);
                     List<Object> hits = (List<Object>) result.get('hits');
                     System.debug('hits ::: '+hits);
+                    // System.debug('result'+result);
+
+                    // List<Object> suggestions = (List<Object>)jsonResponse.get('suggestion');
+                    // System.debug('suggestions'+suggestions);
     
                     List<Map<String, String>> formattedSuggestions = new List<Map<String, String>>();
                     for (Object hit : hits) {

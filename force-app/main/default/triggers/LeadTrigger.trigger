@@ -8,7 +8,7 @@ trigger LeadTrigger on Lead (before insert, after insert, before update, after u
             // LeadTriggerHandler.recursiveCheck1(trigger.new);
         }
         when AFTER_INSERT {
-            LeadTriggerHandler.checkDecryptChange(trigger.new);
+            // LeadTriggerHandler.checkDecryptChange(trigger.new);
             // LeadTriggerHandler.recursionCheck(trigger.new);
         }
         when BEFORE_UPDATE{
@@ -17,7 +17,7 @@ trigger LeadTrigger on Lead (before insert, after insert, before update, after u
             // LeadTriggerHandler.recursiveCheck1(trigger.new);
         }
         when AFTER_UPDATE {
-            LeadTriggerHandler.checkDecryptChange(trigger.new);
+            // LeadTriggerHandler.checkDecryptChange(trigger.new);
             // LeadTriggerHandler.recursionCheck(trigger.new);
         }
     }

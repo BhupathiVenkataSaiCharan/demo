@@ -41,12 +41,23 @@ export default class AddCustomProducts extends LightningElement {
     }
 
 
-    handleQuantity(event){
-        this.prodQuantity = event.target.value;
-        this.prodTotal = this.prodQuantity * this.prodPrice;
-    }
-    handlePrice(event){
-        this.prodPrice = event.target.value;
+    // handleQuantity(event){
+    //     this.prodQuantity = event.target.value;
+    //     this.prodTotal = this.prodQuantity * this.prodPrice;
+    // }
+    // handlePrice(event){
+    //     this.prodPrice = event.target.value;
+    //     this.prodTotal = this.prodQuantity * this.prodPrice;
+    // }
+
+    handleTotal(event){
+        const name = event.target.name;
+        if(name == 'Quantity'){
+            this.prodQuantity = event.target.value;
+        }
+        if(name == 'Price'){
+            this.prodPrice = event.target.value;
+        }
         this.prodTotal = this.prodQuantity * this.prodPrice;
     }
 

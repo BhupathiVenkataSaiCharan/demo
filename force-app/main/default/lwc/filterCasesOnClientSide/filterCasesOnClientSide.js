@@ -67,6 +67,8 @@ export default class FilterCasesOnClientSide extends LightningElement {
     }
     handleDate(e){
         this.dateValue = e.target.value;
+        console.log('Datevalue', this.dateValue);
+        console.log('Date :::::', new Date().toISOString());
     }
     handleContact(e){
         this.contactValue = e.target.value;
