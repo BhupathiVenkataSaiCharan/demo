@@ -3,6 +3,7 @@
  * 
  * CH-01                Charan              21-11-2024              Practice Scenarios
  * CH-02                Charan              21-11-2024              Interview Scenarios 
+ * CH-03                Charan              04-12-2024              CPY scenario
  */
 public class ContactTriggerHandler {
     
@@ -48,6 +49,7 @@ public class ContactTriggerHandler {
                 accIds.add(con.AccountId);
             }
         }
+        
 
         Map<Id, Integer> accMap = new Map<Id, Integer>();
         for(AggregateResult agr : [SELECT COUNT(Id)cnt,AccountId FROM Contact WHERE AccountId IN :accIds GROUP BY AccountId]){
@@ -61,6 +63,45 @@ public class ContactTriggerHandler {
 
         if(!accList.isEmpty()){
             update accList;
+        }
+    }
+
+
+    /**
+     * CH-03 Update count of active and inactive contacts for account on account
+     * @param newList
+     * @return void
+     */
+    public static void updateStatusCountOnAccount(List<Contact> newList){
+
+        Set<Id> accSet = new Set<Id>();
+        for(Contact con : newList){
+            if(con.AccountId != null){
+                accSet.add(con.AccountId);
+            }
+        }
+        
+        Map<Id, Account> accMap = new Map<Id, Account>();
+        for(AggregateResult agr : [SELECT COUNT(Id)cnt, AccountId, Status__c FROM Contact WHERE AccountId IN :accSet and Status__c != null GROUP BY AccountId,Status__c]){
+            
+            Account acc = new Account();
+            
+            if(accMap.containsKey((Id)agr.get('AccountId'))){
+                acc = accMap.get((Id)agr.get('AccountId'));
+            }else{
+                acc.Id = (Id)agr.get('AccountId');
+            }
+
+            if(agr.get('Status__c').toString() == 'Active'){
+                acc.Active_Contacts__c = (Integer)agr.get('cnt');
+            }else{
+                acc.Inactive_Contacts__c = (Integer)agr.get('cnt');
+            }
+
+            accMap.put((Id)agr.get('AccountId'), acc);
+        }
+        if(accMap.values() != null){
+            update accMap.values();
         }
     }
 }

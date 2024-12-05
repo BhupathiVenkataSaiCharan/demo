@@ -28,7 +28,8 @@ private class ContactTriggerHandlerTest {
         
         } catch (Exception e) {
             Assert.areEqual('FIELD_CUSTOM_VALIDATION_EXCEPTION', e);        
-        }   
+        }
+        
     }
 
     @isTest
