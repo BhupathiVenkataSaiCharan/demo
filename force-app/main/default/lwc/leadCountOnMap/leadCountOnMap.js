@@ -31,5 +31,4 @@ export default class LeadCountOnMap extends LightningElement {
             description: `Count : ${item.count}`
         }));
     }
-    
 }

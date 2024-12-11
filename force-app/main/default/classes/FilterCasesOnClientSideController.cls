@@ -34,7 +34,7 @@ public class FilterCasesOnClientSideController {
     /**
      * CH-03 wrapper class to hold list of contacts and cases
      * @param
-     * @return 
+     * @return wrapperclass or contact and case
      */
     public class objectWrapper{
         @AuraEnabled public List<Contact> contacts = new List<Contact>();
