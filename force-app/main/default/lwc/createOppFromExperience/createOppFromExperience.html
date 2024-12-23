@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="List of Products">
+        <template if:true={userInfo}>
+            <lightning-input label="First Name" name="firstName" value={firstName} onchange={handleDetails}></lightning-input>
+            <lightning-input label="Last Name" name="lastName" value={lastName} onchange={handleDetails}></lightning-input>
+            <lightning-input label="Email" name="Email" value={email} onchange={handleDetails}></lightning-input>
+            <lightning-button label="Save & Add Products" variant="brand" onclick={handleSave}></lightning-button>
+        </template>
+        <template if:true={selectPage}>
+            <lightning-datatable data={products} columns={columns} key-field="Id" onrowselection={handleRowSelection}></lightning-datatable>
+            <lightning-button label="Previous" variant="neutral" onclick={handlePrevious}></lightning-button>
+            <lightning-button label="Next" onclick={handleNext} variant="brand" disabled={ifSelected}></lightning-button>
+        </template>
+        <template if:true={orderPage}>
+                <template for:each={selectedProducts} for:item="product">
+                    <div key={product.Product2Id}>
+                        <lightning-input label="Product Name" data-id={product.Product2Id} value={product.Name} disabled="true"></lightning-input>
+                        <lightning-input label="Quantity" data-id={product.Product2Id} name="Quantity" value={product.Quantity} onchange={handleChange}></lightning-input>
+                        <lightning-input label="Price" data-id={product.Product2Id} value={product.Price} disabled="true"></lightning-input>
+                    </div>
+                </template>
+                <lightning-button label="Back" onclick={handleBack} variant="Neutral"></lightning-button>
+                <lightning-button label="Order" onclick={handleOrder} variant="brand"></lightning-button>
+        </template>
+    </lightning-card>
+</template>
