@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Search Contacts and Error handling">
+        <lightning-input label="Enter Contact Name" value={searchVal} onchange={handleChange}></lightning-input>
+        <lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+        <template if:true={contacts}>
+            <template for:each={contacts} for:item="con">
+                <p key={con.Id}>{con.Name}</p>
+            </template>
+        </template>
+        <template if:true={showError}>
+            <div class="slds-text-color_weak">{errorMessage}</div>
+        </template>
+        <template if:true={showNoRecords}>
+            <div class="slds-text-color_weak">No records found.</div>
+        </template>
+    </lightning-card>
+</template>
