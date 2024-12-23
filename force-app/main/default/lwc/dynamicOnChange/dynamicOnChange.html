@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Dynamic onChange for multiple inputs">
+        <lightning-input label="First Name" name="firstName" value={fName} onchange={handleChange}></lightning-input>
+        <lightning-button label="Submit" variant="brand" onclick={handleSubmit}></lightning-button>
+        <lightning-button label="Clear" variant="base" onclick={handleClear}></lightning-button>
+    </lightning-card>
+    <lightning-card title="Display Details">
+        <p>First Name: {fName}</p>
+    </lightning-card>
+</template>
