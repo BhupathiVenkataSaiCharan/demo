@@ -104,4 +104,34 @@ public class ContactTriggerHandler {
             update accMap.values();
         }
     }
+
+    /**
+     * CH-02    If the Account already has 2 contacts throw error that cannot create more contacts for this account
+     * @param accList
+     * @return void
+     */
+
+    public static void preventAdditionalContacts(List<Contact> newList){
+
+        Set<Id> accSet = new Set<Id>();
+        for(Contact con : newList){
+            if(con.AccountId != null){
+                accSet.add(con.AccountId);
+            }
+        }
+
+        Map<Id, Integer> countMap = new Map<Id, Integer>();
+        for(AggregateResult agr : [SELECT COUNT(Id)cnt,AccountId FROM Contact WHERE AccountId !=null AND AccountId IN :accSet GROUP BY AccountId]){
+            if((Integer)agr.get('cnt') >= 2){
+                countMap.put((Id)agr.get('AccountId'), (Integer)agr.get('cnt'));
+            }
+        }
+
+        for(Contact con : newList){
+            if(con.AccountId!= null && countMap.get(con.AccountId) >=2){
+                con.addError('Cannot create more contacts for this account');
+            }
+        }
+    }
+
 }
