@@ -24,11 +24,6 @@ export default class CreateOppFromExperience extends LightningElement {
     selectPage = false;
     orderPage = false;
 
-
-    connectedCallback(){
-        this.showToast('Toast Check','Toast Working fine','success');
-    }
-
     //On change for User details 
     handleDetails(event){
         const name = event.target.name;
@@ -52,9 +47,6 @@ export default class CreateOppFromExperience extends LightningElement {
             LName : this.lastName,
             Email : this.email
         }];
-        console.log('Before toast');
-        this.showToast('Toast Check 1','Toast Working fine','success');
-        console.log('After toast');
     }
 
     //go back to user details
@@ -70,7 +62,6 @@ export default class CreateOppFromExperience extends LightningElement {
     @wire(getProductsList)
     wiredProducts({data,error}){
         console.log('data', data);
-        this.showToast('Toast Check 2','Toast Working fine','success');
         if(data){
             console.log('data', data);
             this.products = data.map(item=>({

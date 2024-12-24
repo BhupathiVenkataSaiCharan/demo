@@ -39,6 +39,7 @@ public class createOppFromExperienceController {
         for(Object obj : rawList){
             productList.add((Map<String,Object>) obj);
         }
+        System.debug('productList' +productList);
 
         if(conEmail == '' && lName == '' && fName == ''){
             return;
@@ -76,5 +77,18 @@ public class createOppFromExperienceController {
                 AccountId = account.Id
             );
             insert opportunity;
+
+        // List<OpportunityLineItem> lineItems = new List<OpportunityLineItem>();
+        // for(Map<String,Object> product : productList){
+        //     System.debug('product' +product);
+        //     lineItems.add(new OpportunityLineItem(
+        //         OpportunityId = opportunity.Id,
+        //         PricebookEntryId = (Id) product.get('Product2Id'),
+        //         Quantity = (Decimal) product.get('Quantity'),
+        //         UnitPrice = (Decimal) product.get('Price')
+        //     ));
+        // }
+        // System.debug('lineItems' +lineItems);
+        // insert lineItems;
     }
 }
