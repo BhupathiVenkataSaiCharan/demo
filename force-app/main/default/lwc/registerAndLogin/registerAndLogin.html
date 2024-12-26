@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="User Login or Registration">
+        <lightning-tabset>
+            <lightning-tab label="Log In">
+                <lightning-input label="Enter Your Email" name="Email" value={userEmail} onchange={handleChange}></lightning-input>
+                <lightning-input label="Enter Password" name="Password" value={userPassword} onchange={handleChange}></lightning-input>
+                <lightning-button label="LogIn" variant="brand" onclick={handleLogin}></lightning-button>
+            </lightning-tab>
+            <lightning-tab label="Sign Up">
+                <lightning-input label="Enter Your First Name" name="newFirstName" value={newuserFirstName} onchange={handleChange}></lightning-input>
+                <lightning-input label="Enter Your Last Name" name="newLastName" value={newUserLastName} onchange={handleChange}></lightning-input>
+                <lightning-input label="Enter Your Email" name="newEmail" value={newUserEmail} onchange={handleChange}></lightning-input>
+                <lightning-input label="Enter Password" name="newPassword" value={newUserPassword} onchange={handleChange}></lightning-input>
+                <lightning-button label="SignUp" variant="brand" onclick={handleSignup}></lightning-button>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>
