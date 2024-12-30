@@ -1,0 +1,23 @@
+<template>
+    <lightning-card label="Calculator App">
+        <lightning-input label="calcValue" name="calcValue" value={calcValue} onchange={handleChange}></lightning-input>
+        <lightning-input label="calcResult" name="calcResult" value={calcResult} onchange={handleChange}></lightning-input>
+
+        <lightning-button label = '1' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '2' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '3' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '4' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '5' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '6' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '7' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '8' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '9' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '0' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '+' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '-' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '*' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label = '/' variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label="=" variant="brand" onclick={handleClick}></lightning-button>
+        <lightning-button label="CLR" variant="brand" onclick={handleClick}></lightning-button>
+    </lightning-card>
+</template>
