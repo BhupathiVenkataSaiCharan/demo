@@ -26,15 +26,14 @@ export default class RegisterAndLogin extends LightningElement {
     handleLogin(){
         this.userEmail = this.Email;
         this.userPassword = this.Password;
-        console.log(this.userEmail);
-        console.log(this.userPassword);
         checkUser({uEmail : this.userEmail, uPassword : this.userPassword})
         .then(result=>{
-            console.log(result);
-            if(result){
-                this.showToast('SUCCESS', 'User is available in the org','success');
+            if(result === 'No User'){
+                this.showToast('ERROR', 'No User with email found','error');
+            }else if(result === 'Wrong Password'){
+                this.showToast('ERROR', 'Wrong Password','error');    
             }else{
-                this.showToast('ERROR', 'Username and Passwords does not match','error');    
+                this.showToast('SUCCESS', 'User is available in the org','success');
             }
         })
         .catch(error=>{

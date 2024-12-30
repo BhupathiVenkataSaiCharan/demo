@@ -36,14 +36,18 @@ public class RegisterAndLoginController {
 	}
 
 	@AuraEnabled
-	public static Boolean checkUser(String uEmail, String uPassword){
-
+	public static String checkUser(String uEmail, String uPassword){
 		try{
 			List<SiteUser__c> existingUser = [SELECT Id,Name,Email__c,Password__c FROM SiteUser__c WHERE Email__c = :uEmail LIMIT 1];
-			if(!existingUser.isEmpty() && existingUser[0].Password__c == uPassword){
-				return true;
+			
+			if(existingUser.isEmpty()){
+				return 'No User';
 			}
-			return false;
+			else if(existingUser[0].Password__c != uPassword){
+				return 'Wrong Password';
+			}else{
+				return '';
+			}
 		}catch(Exception e){
 			throw new AuraHandledException(e.getMessage());
 		}
