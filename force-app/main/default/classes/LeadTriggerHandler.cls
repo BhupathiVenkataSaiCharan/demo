@@ -1,6 +1,7 @@
 /**
  * CH-01            Charan              15-11-2024              practice Scenarios
- * CH-02            Charan              15-11-2024              Interview Scenarios          
+ * CH-02            Charan              15-11-2024              Interview Scenarios      
+ * CH-03            Charan              02-01-2025              Reyna project scenario    
  */
 public class LeadTriggerHandler {
 
@@ -130,5 +131,30 @@ public class LeadTriggerHandler {
             }
         }
         insert taskList;
+    }
+
+
+    /**
+     * CH-03    Assign lead to user based on country
+     * @param  newList
+     * @return  void
+     */
+    public static void assignLeadToUser(List<Lead> newList){
+
+        Set<String> countrySet = new Set<String>();
+        for(Lead ld : newList){
+            if(ld.Country__c != null){
+                countrySet.add(ld.Country__c);
+            }
+        }
+
+        Map<String, List<User>> userMap = new Map<String, List<User>>();
+        for(User u : [SELECT Id,Country__c FROM User WHERE Country__c IN :countrySet]){
+            if(!userMap.containsKey(u.Country__c)){
+                userMap.put(u.Country__c, new List<User>());
+            }else{
+                userMap.get(u.Country__c).add(u);
+            }
+        }
     }
 }

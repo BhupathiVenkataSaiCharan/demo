@@ -6,6 +6,7 @@ trigger LeadTrigger on Lead (before insert, after insert, before update, after u
             // LeadTriggerHandler.sourceBasedRating(trigger.new);    
             // LeadTriggerHandler.duplicateLeadCheck(trigger.new);
             // LeadTriggerHandler.recursiveCheck1(trigger.new);
+            LeadTriggerHandler.assignLeadToUser(trigger.new);
         }
         when AFTER_INSERT {
             // LeadTriggerHandler.checkDecryptChange(trigger.new);

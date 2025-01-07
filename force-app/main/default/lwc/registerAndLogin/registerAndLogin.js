@@ -26,20 +26,27 @@ export default class RegisterAndLogin extends LightningElement {
     handleLogin(){
         this.userEmail = this.Email;
         this.userPassword = this.Password;
-        checkUser({uEmail : this.userEmail, uPassword : this.userPassword})
-        .then(result=>{
-            if(result === 'No User'){
-                this.showToast('ERROR', 'No User with email found','error');
-            }else if(result === 'Wrong Password'){
-                this.showToast('ERROR', 'Wrong Password','error');    
-            }else{
-                this.showToast('SUCCESS', 'User is available in the org','success');
-            }
-        })
-        .catch(error=>{
-            console.log(error.body.message);
-            this.showToast('ERROR2', error.body.message,'error');
-        })
+        console.log('please enter values===>', this.userEmail, this.userPassword);
+
+        if(this.userEmail != undefined || this.userPassword != undefined){
+
+            checkUser({uEmail : this.userEmail, uPassword : this.userPassword})
+            .then(result=>{
+                if(result === 'No User'){
+                    this.showToast('ERROR', 'No User with email found','error');
+                }else if(result === 'Wrong Password'){
+                    this.showToast('ERROR', 'Wrong Password','error');    
+                }else{
+                    this.showToast('SUCCESS', 'User is available in the org','success');
+                }
+            })
+            .catch(error=>{
+                console.log(error.body.message);
+                this.showToast('ERROR2', error.body.message,'error');
+            })
+        }else{
+            this.showToast('ERROR', 'Please enter values','error');
+        }
     }
 
 

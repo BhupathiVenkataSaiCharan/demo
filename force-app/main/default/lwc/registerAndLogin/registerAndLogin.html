@@ -2,8 +2,8 @@
     <lightning-card title="User Login or Registration">
         <lightning-tabset>
             <lightning-tab label="Log In">
-                <lightning-input label="Enter Your Email" name="Email" value={userEmail} onchange={handleChange}></lightning-input>
-                <lightning-input label="Enter Password" name="Password" value={userPassword} onchange={handleChange}></lightning-input>
+                <lightning-input label="Enter Your Email" name="Email" value={userEmail} onchange={handleChange} required="true"></lightning-input>
+                <lightning-input label="Enter Password" name="Password" value={userPassword} onchange={handleChange} required="true"></lightning-input>
                 <lightning-button label="LogIn" variant="brand" onclick={handleLogin}></lightning-button>
             </lightning-tab>
             <lightning-tab label="Sign Up">
