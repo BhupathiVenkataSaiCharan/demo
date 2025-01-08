@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="LWC Accordion">
+        <lightning-accordion allow-multiple-sections-open>
+            <template if:true={accounts}>
+                <template for:each={accounts} for:item="acc">
+                    <lightning-accordion-section key={acc.Id} data-id={acc.Id} data-label={acc.Name} label={acc.Name} onclick={handleClick}>
+                        <template if:true={contacts}>
+                            <template for:each={contacts} for:item="con">
+                                <p key={con.Id}>{con.Name}</p>
+                            </template>
+                        </template>
+                    </lightning-accordion-section>
+                </template>
+            </template>
+        </lightning-accordion>
+    </lightning-card>
+</template>
