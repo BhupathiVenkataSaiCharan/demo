@@ -13,7 +13,7 @@
 
 public class RegisterAndLoginController {
 	@AuraEnabled
-	public static void createNewUser(String fName, String lName, String uEmail, String uPassword){
+	public static String createNewUser(String fName, String lName, String uEmail, String uPassword){
 
 		String uName = fName + ' ' + lName;
 		try{
@@ -23,6 +23,7 @@ public class RegisterAndLoginController {
 				Password__c = uPassword
 			);
 			insert u;
+			return 'User created successfully';
 		}
 		catch(Exception e){
 			System.debug('Exception==>' + e.getMessage());
