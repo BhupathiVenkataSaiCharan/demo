@@ -2,6 +2,8 @@ import { LightningElement } from 'lwc';
 import createNewUser from '@salesforce/apex/RegisterAndLoginController.createNewUser';
 import checkUser from '@salesforce/apex/RegisterAndLoginController.checkUser';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
+import USER_CREATED_SUCCESS from '@salesforce/label/c.User_Creation';
+import USER_ALREADY_EXIST from '@salesforce/label/c.Duplicate_User_Error';
 
 export default class RegisterAndLogin extends LightningElement {
 
@@ -37,7 +39,7 @@ export default class RegisterAndLogin extends LightningElement {
                 }else if(result === 'Wrong Password'){
                     this.showToast('ERROR', 'Wrong Password','error');    
                 }else{
-                    this.showToast('SUCCESS', 'User is available in the org','success');
+                    this.showToast('SUCCESS', USER_ALREADY_EXIST,'success');
                 }
             })
             .catch(error=>{
@@ -63,7 +65,7 @@ export default class RegisterAndLogin extends LightningElement {
         this.newUserPassword = this.newPassword;
         createNewUser({fName : this.newuserFirstName, lName : this.newLastName, uEmail : this.newEmail, uPassword : this.newUserPassword})
         .then(result=>{
-            this.showToast('SUCCESS', 'User Creation is Successful','success');
+            this.showToast('SUCCESS', USER_CREATED_SUCCESS,'success');
             this.newUserFirstName = '';
             this.newUserLastName = '';
             this.newUserEmail = '';

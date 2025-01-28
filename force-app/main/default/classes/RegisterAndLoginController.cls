@@ -23,12 +23,12 @@ public class RegisterAndLoginController {
 				Password__c = uPassword
 			);
 			insert u;
-			return 'User created successfully';
+			return Label.User_Creation;
 		}
 		catch(Exception e){
 			System.debug('Exception==>' + e.getMessage());
 			if(e.getMessage().contains('DUPLICATE')){
-				throw new AuraHandledException('User Already Exists. Please try logging in');
+				throw new AuraHandledException(Label.Duplicate_User_Error);
 			}else if(e.getMessage().contains('REQUIRED')){
 				throw new AuraHandledException('Required fields are missing');
 			}
